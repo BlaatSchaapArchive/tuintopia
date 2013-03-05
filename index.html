@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tuintopia Speldemo</title>
+    <link rel="stylesheet" type="text/css" href="tuintopia.css"/>
+    <meta charset="UTF-8">
+    <!-- replaces HTML4
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    -->
+<!--  moved to bottom of page, to prevent error on load when page is not fully rendered yet
+    <script src="helper.js" ></script>
+    <script src="message.js" ></script>
+    <script src="tuintopia.js" ></script>
+-->
+
+  </head>
+  <body>
+    <div id="overlay"></div>
+
+      <table>
+        <tr><td colspan=10  class=filler></td></tr>
+        <tr> 
+          <td id=card1 class=card rowspan=3 onclick='PlayCard(1)'></td>
+          <td id=card2 class=card rowspan=3  onclick='PlayCard(2)'></td>
+          <td id=house1 class=card rowspan=3> <img src="cards/named/huis/huis-links.jpg" alt="links"> </td>
+          <td id=house2 class=card rowspan=3> <img src="cards/named/huis/huis-rechts.jpg" alt="rechts"> </td>
+          <td id=card3 class=card rowspan=3 onclick='PlayCard(3)'></td>
+          <td id=card4 class=card rowspan=3 onclick='PlayCard(4)'></td>
+          <td colspan=4  class=newgame><a href="http://www.tuintopia.nl" target="_blank"><img id=logo src="logo.png" alt=logo></a><br><button onclick="GetGame('action=newgame')">Nieuw spel</button> <button onclick="ShowGameRules();">Speluitleg</button></td>
+        </tr>
+<tr>
+
+          <td  colspan=4 id=score> <div id=toh>Score:<span id=totalscore ></span></div><div id=tuh>Laatste beurt:<span id=turnscore ></span></div> </td>
+</tr>
+        <tr>
+          <td></td>
+          <td colspan=2 class=title>Hand:</td>
+          <td class=title>Legenda:</td>
+        </tr>
+        <tr> 
+          <td id=card5 class=card onclick='PlayCard(5)'>  </td>
+          <td id=card6   class=card onclick='PlayCard(6)'></td>
+          <td id=card7   class=card onclick='PlayCard(7)'></td>
+          <td id=card8 class=card onclick='PlayCard(8)'></td>
+          <td id=card9 class=card onclick='PlayCard(9)'></td>
+          <td id=card10 class=card onclick='PlayCard(10)'></td>
+          <td rowspan=2  id=details class=details></td>
+          <td class=card id=hand1 onclick='SelectCard(1);'>hand1</td><td class=card id=hand2 onclick='SelectCard(2);'>hand2</td>
+          <td rowspan=2 class=legend>
+          <div><span><img src="legend/voedsel.png"          alt="voedsel"         > </span><span class=legenditem>Voedsel</span><span id=voedsel></span> </div>
+          <div><span><img src="legend/water.png"            alt="water"           > </span><span class=legenditem>Water</span></span><span id=water></span> </div>
+          <div><span><img src="legend/mest.png"             alt="mest"            > </span><span class=legenditem>Mest</span></span><span id=mest></span> </div>
+          <div><span><img src="legend/plantenresten.png"    alt="plantenresten"   > </span><span class=legenditem>Plantenresten</span></span><span id=plantenresten></span> </div>
+          <div><span><img src="legend/nectar.png"           alt="nectar"          > </span><span class=legenditem>Nectar</span></span><span id=nectar></span> </div>
+          <div><span><img src="legend/bevruchting.png"      alt="bevruchting"     > </span><span class=legenditem>Bevruchting</span></span><span id=bevruchting></span> </div>
+          <div><span><img src="legend/stro.png"             alt="stro"            > </span><span class=legenditem>Stro</span></span><span id=stro></span> </div>
+          <div><span><img src="legend/afvalwater.png"       alt="afvalwater"      > </span><span class=legenditem>Afvalwater</span></span><span id=afvalwater></span> </div>
+          <div><span><img src="legend/plaagbestrijders.png" alt="plaagbestrijders"> </span><span class=legenditem>Plaagbestrijders</span></span><span id=plaagbestrijders></span> </div>
+          <div><span><img src="legend/stroom.png"           alt="stroom"          > </span><span class=legenditem>Stroom</span></span><span id=stroom></span> </div>
+          <div><span><img src="legend/afdak.png"            alt="afdak"           > </span><span class=legenditem>Afdak</span></span><span id=afdak></span> </div>
+          </td>
+        </tr>
+        <tr> 
+          <td id=card11 class=card onclick='PlayCard(11)'></td>
+          <td id=card12 class=card onclick='PlayCard(12)'></td>
+          <td id=card13 class=card onclick='PlayCard(13)'></td>
+          <td id=card14 class=card onclick='PlayCard(14)'></td>
+          <td id=card15 class=card onclick='PlayCard(15)'></td>
+          <td id=card16 class=card onclick='PlayCard(16)'></td>
+          <td class=card id=hand3 onclick='SelectCard(3);'>hand3</td><td id=hand4 class=card onclick='SelectCard(4);'>hand4</td>
+
+
+        </tr>
+        <tr><td colspan=10  class=filler>
+		<a href="http://www.tuintopia.nl/webshop" target="_blank">Bestel direct uw TuinTopia kaartspel!</a> <br>
+		Spelconcept en grafische ontwerpen copyright © 2013 <a href="http://www.resilientculture.com/" target="_blank">Resilient Culture</a>
+		Code online demo copyright © 2013 <a target="_blank" href="http://code.blaatschaap.be">BlaatSchaap Coding Projects</a>
+<br>       <iframe src="http://www.facebook.com/plugins/like.php?href=http://www.facebook.com/tuintopia"
+        scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"></iframe>
+		</td></tr>
+      </table>
+
+    <script src="helper.js" ></script>
+    <script src="message.js" ></script>
+    <script src="tuintopia.js" ></script>
+
+
+  </body>
+
+
+</html>

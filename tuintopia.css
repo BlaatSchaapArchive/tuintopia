@@ -1,0 +1,122 @@
+.test{
+
+ background-color  : red; 
+}
+
+.blah {
+  vertical-align:middle;
+}
+
+.selected {
+  border            : 2px solid red; 
+}
+
+.card {
+  border            : 2px solid yellow;
+}
+
+.card, .selected {
+ /* background-color  : green; */
+  font-size: 0px;
+
+}
+
+.selected img, .card img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.title {
+  text-align:center;
+  vertical-align:bottom;
+}
+
+.score {
+  text-align:center;
+}
+
+
+.details{
+   text-align:left;   
+   width: 10px;
+}
+
+.legenditem{
+  display:inline-block;
+
+}
+.legend{
+/*   width: 10%; */
+   padding-left: 6px;
+   text-align:left;   
+white-space:nowrap;
+}
+
+.legend img {
+    width: 32px;
+    height: 32px;
+}
+
+#turnscore{}
+#totalscore{}
+#toh{}
+#tuh{}
+.filler{}
+#logo{
+	border-style: none
+}
+
+
+html {
+  background:url(background.jpg) left top no-repeat;
+/*  background-color  : darkgreen;  */
+/*  color: lightgray; */
+  text-align:center;
+  font-family: sans-serif;
+}
+
+table{
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+
+/* begin code from blaatschaap live */
+#overlay{
+        z-index: 9;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        background-color: white;
+        text-align: center;
+        visibility: hidden;
+        display: none;
+        padding: 6px;
+        margin: 6px;
+
+}
+
+.element  {
+        padding:6px;
+
+}
+
+.menuitem {
+        color: black;
+        background-color: white ;
+        border: 1px solid green;
+}
+
+.label {
+  color: white;
+  background-color:green;
+  font-family:sans-serif;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 6px;
+  margin-top: 6px;
+  font-size:16px;
+}
+
+/* end code from blaatschaap live */
