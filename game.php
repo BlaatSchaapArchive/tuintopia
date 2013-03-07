@@ -161,7 +161,13 @@
   //--
 
       $stack=array();
-      $cards=xml2php($xmlObj)['card'];
+
+      //$cards=xml2php($xmlObj)['card'];
+      // not supported by php 5.3 
+      // the code was originally developed on 5.4
+      $xmlcards=xml2php($xmlObj);
+      $cards= $xmlcards['card'];      
+
       foreach ($cards as $card){
         $count = $card['count'];
         for ($i=0;$i<$count;$i++) $stack[]=$card;
