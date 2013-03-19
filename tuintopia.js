@@ -1,39 +1,20 @@
 /*******************************************************************************
-
-Copyright (c) 2011-2013, André van Schoubroeck (andre@blaatschaap.be)
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification,
-are permitted provided that the following conditions are met:
-
-  * Redistributions of source code must retain the above copyright notice, this 
-    list of conditions and the following disclaimer.
-  * Redistributions in binary form must reproduce the above copyright notice, 
-    this list of conditions and the following disclaimer in the documentation 
-    and/or other materials provided with the distribution.
-  * Neither the name of the BlaatSchaap nor the names of its contributors may
-    be used to endorse or promote products derived from this software without 
-    specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE 
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL 
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
+  Copyright © 2013 André van Schoubroeck (andre@blaatschaap.be )
 *******************************************************************************/
-
+//------------------------------------------------------------------------------
+var _width=0;
+var _height=0;
+var Selected;
 //------------------------------------------------------------------------------
 function SetLegendItemSize(size){
+  try{
     var legenditem = getStyleSheetRule(".legenditem");
     legenditem.style.setProperty('width', size+"px", '');
+  } catch(e) {
+    alert(e);
+  }
 }
-
+//------------------------------------------------------------------------------
 function setCardSize(width, height){
   try {
     var card = getStyleSheetRule(".card");
@@ -43,7 +24,8 @@ function setCardSize(width, height){
     var card = getStyleSheetRule(".selected");
     card.style.setProperty('width', width+"px", '');
     card.style.setProperty('height', height+"px", '');
-
+    _width=width;
+    _height=height;
 
 
 /*
@@ -56,7 +38,7 @@ function setCardSize(width, height){
     legend.style.setProperty('height', height+"px", '');
 */
 
-  } catch (e) {
+  } catch(e) {
     alert(e);
   }
 }
@@ -115,7 +97,6 @@ function setFillerSize(size){
   try {
     var fillersize = getStyleSheetRule(".filler");
     fillersize.style.setProperty('height', size+"px", '');
-//    alert(fillersize.cssText);
   } catch (e) {
     alert(e);
   }
@@ -136,21 +117,18 @@ function resize(){
     if (aheight<cheight) {
       fwidth=Math.floor(cwidth);
       fheight=Math.floor(aheight);
-      //setCardSize(Math.floor(cwidth),Math.floor(aheight));
     } else {
       fwidth=Math.floor(awidth);
       fheight=Math.floor(cheight);
 
-      //setCardSize(Math.floor(awidth),Math.floor(cheight));
     }
-//    ficon=Math.floor(fheight/6);
     ficon=Math.floor(fheight/6);        
     setCardSize(fwidth,fheight);
     var logoheight=Math.floor(fheight/2.5);
     var logowidth=Math.floor(2.77*logoheight);
     setLogoSize(logowidth,logoheight);
     setIconSize(ficon);
-	SetLegendItemSize(fwidth-ficon)
+    SetLegendItemSize(fwidth-ficon)
     setLegendFontSize(Math.floor(ficon/3));
 
     setTotalScoreFontSize(ficon);
@@ -159,9 +137,6 @@ function resize(){
     ffiller = Math.floor((window.innerHeight - ( 3 * fheight ) - 83 ) / 2) ;
     setFillerSize(ffiller);
 
-    try {    
-      //document.getElementById("details").innerHTML=   aheight+" "+cheight  + " " + String(aheight<cheight) ;//window.innerWidth + "x" +  window.innerHeight;
-    } catch(e){}
 
   } catch (e) {
     alert(e);
@@ -170,7 +145,6 @@ function resize(){
 //------------------------------------------------------------------------------
 function SetHandCard(card,image){
   try{
-//    document.getElementById("hand"+card).innerHTML ="<img onclick='SelectCard("+card+");' src=cards/named/set/"+image+".jpg>";
     document.getElementById("hand"+card).innerHTML ="<img  src=cards/named/set/"+image+".jpg>";
   } catch(e) {
     alert(e);
@@ -280,6 +254,131 @@ function SelectCard(card){
   }
 }
 //------------------------------------------------------------------------------
+function SelectCardDrag(card){
+  try{
+    var i;
+    for (i=1; i<5; i++) {
+      document.getElementById("hand"+i).className = "card";
+    }
+    Selected=card;
+    document.getElementById("hand"+card).className = "selected";
+    document.onmousemove=DragCard;
+    document.onmouseup=DragCardDone;
+    //document.body.focus();
+    
+    document.getElementById("drag").innerHTML=document.getElementById("hand"+card).innerHTML;
+    document.getElementById("hand"+card).ondragstart = function() { return false; };
+
+    // Fix Chrome Drag and Drop support
+    try{
+      event.preventDefault();
+    } catch(e) {
+    }
+    
+  } catch(e) {
+    alert(e);
+  }
+}
+
+function GetCardAtPos(x,y){
+  try {
+    var i;
+    for (i=1; i<17;i++){
+      var left   = document.getElementById("card"+i).offsetLeft;
+      var right  = left+_width;
+      var top    = document.getElementById("card"+i).offsetTop;
+      var bottom = top+_height;
+  
+      if ( (x>left) && (x<right) && (y>top) && (y<bottom) ) return i;
+    }
+    return 0;
+  } catch(e){
+    alert(e);
+  }
+}  
+//------------------------------------------------------------------------------
+function GetHandAtPos(x,y){
+  try{
+    var i;
+    for (i=1; i<5;i++){
+      var left   = document.getElementById("hand"+i).offsetLeft;
+      var right  = left+_width;
+      var top    = document.getElementById("hand"+i).offsetTop;
+      var bottom = top+_height;
+
+      if ( (x>left) && (x<right) && (y>top) && (y<bottom) ) return i;
+    }
+    return 0;
+  } catch(e){
+    alert(e);
+  }
+}
+//------------------------------------------------------------------------------
+function IsHouseAtPos(x,y){
+  try{
+    var i;
+    for (i=1; i<3;i++){
+      var left   = document.getElementById("house"+i).offsetLeft;
+      var right  = left+_width;
+      var top    = document.getElementById("house"+i).offsetTop;
+      var bottom = top+_height;
+  
+      if ( (x>left) && (x<right) && (y>top) && (y<bottom) ) return true;
+    }
+
+    return false;
+  } catch(e){
+    alert(e);
+  }
+}
+//------------------------------------------------------------------------------
+function DragCard(event){
+  try{
+    if(Selected) {
+      var drag = document.getElementById("drag");
+      drag.style.display="block";
+      drag.style.left=""+(event.pageX - Math.floor(_width/2))+"px";
+      drag.style.top =""+(event.pageY - Math.floor(_height/2))+"px";
+      drag.style.cursor="hand";
+    }
+  } catch(e){
+    alert(e);
+  }
+}
+//------------------------------------------------------------------------------
+function DragCardDone(event){
+  try{
+    var card=GetCardAtPos(event.pageX,event.pageY);
+    var hand=GetHandAtPos(event.pageX,event.pageY);
+    if (card) {
+      PlayCard(card);
+    } else if(hand!=Selected) {
+      var i;
+      for (i=1; i<5; i++) {
+        document.getElementById("hand"+i).className = "card";
+      }
+    }
+    if (IsHouseAtPos(event.pageX,event.pageY)) {
+      ShowMessage("Fout","Je kan geen kaart op het huis plaatsen!","HideMessage()");
+    }
+    document.onmousemove=null;
+    document.getElementById("drag").style.display="none";
+  } catch(e){
+    alert(e);
+  }
+}
+//-----------------------------------------------------------------------------
+function DropCard(card){
+  try{
+    if(Selected!=card) {
+      document.getElementById("hand"+Selected).className = "card";
+    }
+  } catch(e) {
+    alert(e)
+  }
+}
+
+//------------------------------------------------------------------------------
 function PlayCard(card){
   try{
     if (Selected > 0) {
@@ -332,6 +431,8 @@ Veel plezier!";
   ShowMessage("Speluitleg",spelregels,"HideMessage()");
 }
 //------------------------------------------------------------------------------
+
+
 resize();
 window.onresize=resize;
 GetGame();

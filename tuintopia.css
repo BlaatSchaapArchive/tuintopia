@@ -1,6 +1,12 @@
+#drag { 
+  position: absolute;
+  border: none !important;
+  z-index: 2;
+  display:none;
+}
 .test{
 
- background-color  : red; 
+  background-color  : red; 
 }
 
 .blah {
@@ -18,7 +24,7 @@
 .card, .selected {
  /* background-color  : green; */
   font-size: 0px;
-
+  position:relative;
 }
 
 .selected img, .card img {

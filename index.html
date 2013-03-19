@@ -16,12 +16,12 @@
   </head>
   <body>
     <div id="overlay"></div>
-
+    <div id="drag" class=card>drag</div>
       <table>
         <tr><td colspan=10  class=filler></td></tr>
         <tr> 
           <td id=card1 class=card rowspan=3 onclick='PlayCard(1)'></td>
-          <td id=card2 class=card rowspan=3  onclick='PlayCard(2)'></td>
+          <td id=card2 class=card rowspan=3  onclick='PlayCard(2)'  onmouseup='PlayCard(2)'></td>
           <td id=house1 class=card rowspan=3> <img src="cards/named/huis/huis-links.jpg" alt="links"> </td>
           <td id=house2 class=card rowspan=3> <img src="cards/named/huis/huis-rechts.jpg" alt="rechts"> </td>
           <td id=card3 class=card rowspan=3 onclick='PlayCard(3)'></td>
@@ -45,7 +45,7 @@
           <td id=card9 class=card onclick='PlayCard(9)'></td>
           <td id=card10 class=card onclick='PlayCard(10)'></td>
           <td rowspan=2  id=details class=details></td>
-          <td class=card id=hand1 onclick='SelectCard(1);'>hand1</td><td class=card id=hand2 onclick='SelectCard(2);'>hand2</td>
+          <td class=card id=hand1    onmousedown='SelectCardDrag(1)';'>hand1</td><td class=card id=hand2 onmousedown='SelectCardDrag(2)';'>hand2</td>
           <td rowspan=2 class=legend>
           <div><span><img src="legend/voedsel.png"          alt="voedsel"         > </span><span class=legenditem>Voedsel</span><span id=voedsel></span> </div>
           <div><span><img src="legend/water.png"            alt="water"           > </span><span class=legenditem>Water</span></span><span id=water></span> </div>
@@ -67,7 +67,7 @@
           <td id=card14 class=card onclick='PlayCard(14)'></td>
           <td id=card15 class=card onclick='PlayCard(15)'></td>
           <td id=card16 class=card onclick='PlayCard(16)'></td>
-          <td class=card id=hand3 onclick='SelectCard(3);'>hand3</td><td id=hand4 class=card onclick='SelectCard(4);'>hand4</td>
+          <td class=card id=hand3 onmousedown='SelectCardDrag(3);'>hand3</td><td id=hand4 class=card onmousedown='SelectCardDrag(4);'>hand4</td>
 
 
         </tr>
@@ -82,8 +82,7 @@
 
     <script src="helper.js" ></script>
     <script src="message.js" ></script>
-    <script src="tuintopia.js" ></script>
-
+    <script src="tuintopia.js"></script>
 
   </body>
 
