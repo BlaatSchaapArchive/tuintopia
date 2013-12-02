@@ -4,7 +4,7 @@ tuintopia
 Tuintopia Online
 
 
-Tuintopia is based upon an upcoming cards game developed by Resilient Culture. 
+Tuintopia Online is based upon an upcoming cards game developed by Resilient Culture. 
 BlaatSchaap Coding Projects has been asked to develop a simplified online 
 version to promote this game. In our code repository you can find the source 
 code for this game, however the game data required to play the game, the concept 
